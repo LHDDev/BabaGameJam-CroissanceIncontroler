@@ -58,7 +58,8 @@ public partial class MainScene : Node2D
 	{
 	}
 
-	public Bramble PlaceTiles(int x, int y){
+	public Bramble PlaceTiles(int x, int y)
+	{
 		Bramble newTile = SmartLoader<Bramble>(_brambleScenePath);
 		newTile.GlobalPosition = _level.MapToLocal(new Vector2i(x,y)) + _spriteOffSet;
 		_level.AddChild(newTile);
@@ -95,9 +96,6 @@ public partial class MainScene : Node2D
 							Vector2 coordToGrowth = coord.ElementAt(idSelected);
 							visitedNode.Add(bramble);
 							visitedNode.Add(PlaceTiles(coordToGrowth));
-							if(coord.Count == 3){
-								_cantGrowthAnymore.Add(bramble.GlobalPosition);
-							}
 						}
 						else{
 							_cantGrowthAnymore.Add(bramble.GlobalPosition);

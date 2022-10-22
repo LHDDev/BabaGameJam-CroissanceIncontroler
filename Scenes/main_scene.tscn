@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://banfjsou73x62"]
+[gd_scene load_steps=12 format=3 uid="uid://banfjsou73x62"]
 
 [ext_resource type="PackedScene" uid="uid://dopdilv6rgt6o" path="res://Scenes/audio_player.tscn" id="1_5mrya"]
 [ext_resource type="Script" path="res://Scripts/MainScene.cs" id="1_c4hvj"]
 [ext_resource type="PackedScene" uid="uid://cy6speli1s7o7" path="res://Scenes/player.tscn" id="2_2m3xv"]
 [ext_resource type="PackedScene" uid="uid://codb56fhab05c" path="res://Scenes/normal_pumpkin.tscn" id="4_b06em"]
 [ext_resource type="Texture2D" uid="uid://dcb2tv6dxghdq" path="res://Assets/Graphics/Fance/Fance.png" id="5_kgwil"]
-[ext_resource type="PackedScene" uid="uid://bj4201puu2wq3" path="res://Scenes/Collectable.tscn" id="7_lc2ef"]
+[ext_resource type="PackedScene" uid="uid://ddlotcrl0gs4j" path="res://Scenes/Collectable.tscn" id="7_lc2ef"]
 
 [sub_resource type="TileSet" id="TileSet_2uy5g"]
 
@@ -74,5 +74,7 @@ _cooldownValue = 0.5
 
 [node name="Collectable" parent="." instance=ExtResource("7_lc2ef")]
 position = Vector2(319.62, 157.294)
+
 [node name="GrowthCooldown" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true

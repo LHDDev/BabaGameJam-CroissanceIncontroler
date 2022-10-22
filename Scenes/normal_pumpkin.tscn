@@ -1,32 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://codb56fhab05c"]
+[gd_scene load_steps=10 format=3 uid="uid://codb56fhab05c"]
 
+[ext_resource type="Script" path="res://Scripts/normal_pumpkin.cs" id="1_ma5wv"]
 [ext_resource type="Script" path="res://Scripts/Pumpkin/PumpkinCore.cs" id="1_w8w7k"]
+[ext_resource type="Texture2D" uid="uid://cadvkr0bk1uai" path="res://Assets/Graphics/Pumpkin/PumpkinSpriteSheet.png" id="3_05l2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7o8f"]
 size = Vector2(12, 4)
 
-[node name="NormalPumpkin" type="StaticBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwpw2"]
+atlas = ExtResource("3_05l2g")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gto7d"]
+atlas = ExtResource("3_05l2g")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ftq"]
+atlas = ExtResource("3_05l2g")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haegi"]
+atlas = ExtResource("3_05l2g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsej0"]
+animations = [{
+"frames": [SubResource("AtlasTexture_qwpw2"), SubResource("AtlasTexture_gto7d"), SubResource("AtlasTexture_08ftq")],
+"loop": false,
+"name": &"Death",
+"speed": 6.0
+}, {
+"frames": [SubResource("AtlasTexture_haegi")],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="NormalPumpkin" type="StaticBody2D" node_paths=PackedStringArray("_pumpkinSprite") groups=["pumpkin_group"]]
+script = ExtResource("1_ma5wv")
+_pumpkinSprite = NodePath("Sprite2D")
 
 [node name="PumpkinCore" type="Node" parent="." node_paths=PackedStringArray("_cooldownDropSeedTimer")]
 script = ExtResource("1_w8w7k")
 _cooldownDropSeedTimer = NodePath("../CooldownSeed")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["pumpkin_group"]]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_n7o8f")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2i(16, 16)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.819608, 0.368627, 0.133333, 1)
-
 [node name="CooldownSeed" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+frames = SubResource("SpriteFrames_lsej0")
+animation = &"Idle"
+playing = true
