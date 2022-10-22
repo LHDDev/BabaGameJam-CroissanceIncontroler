@@ -12,8 +12,11 @@ public partial class Player : CharacterBody2D
 	private Timer _cooldownTimer;
 	[Export]
 	private float _cooldownValue;
+	[Export]
+	private AnimatedSprite2D _playerSprite;
 
 	private bool _canAttack = true;
+	private bool _canMove = true;
 
 	[Signal]
 	public delegate void AttackEventHandler();
@@ -25,24 +28,62 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		if(Input.IsMouseButtonPressed(MouseButton.Left) && _canAttack){
-			
-				_canAttack = false;
-				EmitSignal(nameof(Attack));
-				_cooldownTimer.Start();
+			_canAttack = false;
+			EmitSignal(nameof(Attack));
+			_cooldownTimer.Start();
 		}
+
 		float hDirection =  Input.GetAxis("ui_left","ui_right");
 		float vDirection =  Input.GetAxis("ui_up","ui_down");
 		Vector2 dir = new Vector2(hDirection,vDirection );
+		MovePlayer(dir);
+		SetAnimation();
 
-		if(dir !=  Vector2.Zero)
-			Velocity = new Vector2(hDirection,vDirection ) * _speed;
+	}
+
+	public void SetAnimation(){
+		if(Velocity == Vector2.Zero){
+			// idles
+			if(_playerSprite.Animation == "MoveRight") _playerSprite.Animation="IdleRight";
+			if(_playerSprite.Animation == "MoveUp") _playerSprite.Animation="IdleUp";
+			if(_playerSprite.Animation == "MoveDown") _playerSprite.Animation="IdleDown";
+		}
+		else{
+			GD.Print("Anima toi !!");
+			_playerSprite.FlipH = Velocity.x < 0;
+			if(Velocity.x != 0){
+				_playerSprite.Animation = "MoveRight";
+			}
+			else{
+				if(Velocity.y < 0) _playerSprite.Animation = "MoveUp";
+				if(Velocity.y > 0) _playerSprite.Animation = "MoveDown";
+			}
+
+		}
+	}
+	public void MovePlayer(Vector2 dir){
+
+		if(dir !=  Vector2.Zero && _canMove)
+			Velocity = dir * _speed;
 		else 		
 			Velocity = Velocity.MoveToward(Vector2.Zero,_towardDelta);
 		MoveAndSlide();
 
 	}
-
 	public void onCooldownFinished(){
+		_canAttack = true;
+	}
+
+	public async void PushBack(Vector2 force){
+		_canMove= false;
+		_canAttack=false;
+		GD.Print(force);
+		Velocity = force;
+		GD.Print(Velocity + "PUSH");
+		MoveAndSlide();
+		await ToSignal(GetTree().CreateTimer(0.25f),"timeout");
+		GD.Print(Velocity + "STOP PUSH");
+		_canMove = true;
 		_canAttack = true;
 	}
 }
