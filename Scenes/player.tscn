@@ -346,10 +346,12 @@ size = Vector2(6, 12)
 size = Vector2(6, 6.5)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attackArea", "_cooldownTimer", "_playerSprite")]
+collision_layer = 2
 script = ExtResource("1_fjl0a")
 attackArea = NodePath("Pivot/Attack")
 _cooldownTimer = NodePath("Cooldown")
 _playerSprite = NodePath("PlayerSprite")
+_weapon = 3
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 frames = ExtResource("2_7irjt")
@@ -425,3 +427,7 @@ debug_color = Color(0.972549, 0, 0.027451, 0.419608)
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15.25)
 shape = SubResource("RectangleShape2D_syef4")
+
+[node name="WeaponDurationTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true

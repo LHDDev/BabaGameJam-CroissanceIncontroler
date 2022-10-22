@@ -6,15 +6,19 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0if4g"]
 radius = 26.0
 
-[node name="Collectable" type="Node2D" node_paths=PackedStringArray("sprite")]
+[node name="Collectable" type="Node2D" node_paths=PackedStringArray("sprite", "area")]
 script = ExtResource("1_keylm")
 sprite = NodePath("Sprite2D")
+area = NodePath("Area2D")
+collectableType = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_17kl0")
 hframes = 4
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_0if4g")

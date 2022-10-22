@@ -4,10 +4,10 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	private enum Weapon {
-		Shear,
+		Scythe,
 		Spray,
 		Shovel,
-		Scythe
+		Shear
 	};
 	
 	[Export]
@@ -22,7 +22,8 @@ public partial class Player : CharacterBody2D
 	private float _cooldownValue;
 	[Export]
 	private AnimatedSprite2D _playerSprite;
-
+	
+	
 	private bool _canAttack = true;
 	private bool _canMove = true;
 	
@@ -34,6 +35,8 @@ public partial class Player : CharacterBody2D
 	public override void _Ready(){
 		this.Attack += attackArea.onPlayerAttack;
 		
+		EventBus bus = GetTree().Root.GetNode<EventBus>("EventBus");
+		bus.Collect += onCollectableCollected;
 		_cooldownTimer.WaitTime = _cooldownValue;
 		_cooldownTimer.Timeout += onCooldownFinished;
 	}
@@ -98,5 +101,10 @@ public partial class Player : CharacterBody2D
 		GD.Print(Velocity + "STOP PUSH");
 		_canMove = true;
 		_canAttack = true;
+	}
+	
+	public void onCollectableCollected(int collectableType){
+		GD.Print("Collectable collected " + collectableType);
+		_weapon = collectableType;
 	}
 }
