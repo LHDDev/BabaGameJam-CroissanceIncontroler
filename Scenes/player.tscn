@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy6speli1s7o7"]
+[gd_scene load_steps=23 format=3 uid="uid://cy6speli1s7o7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fjl0a"]
 [ext_resource type="Script" path="res://Scripts/Pivot.cs" id="2_j3pop"]
@@ -99,13 +99,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jhrn"]
-size = Vector2(16, 16)
+size = Vector2(6, 12)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_weapon", "_cooldownTimer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syef4"]
+size = Vector2(6, 6.5)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_cooldownTimer")]
 script = ExtResource("1_fjl0a")
-_speed = 100
+_speed = 50
 _towardDelta = 25
-_weapon = NodePath("Pivot/Shear")
 _cooldownTimer = NodePath("Cooldown")
 _cooldownValue = 0.5
 
@@ -129,10 +131,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.215554, 0.679549, 0.264432, 1)
 
-[node name="HurtBox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5jhrn")
-debug_color = Color(0, 0.6, 0.556863, 0.419608)
-
 [node name="Pivot" type="Node2D" parent="."]
 script = ExtResource("2_j3pop")
 
@@ -140,3 +138,14 @@ script = ExtResource("2_j3pop")
 _player = NodePath("../..")
 
 [node name="Cooldown" type="Timer" parent="."]
+
+[node name="HurtBox2" type="Area2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="HurtBox" type="CollisionShape2D" parent="HurtBox2"]
+shape = SubResource("RectangleShape2D_5jhrn")
+debug_color = Color(0.972549, 0, 0.027451, 0.419608)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13.25)
+shape = SubResource("RectangleShape2D_syef4")
