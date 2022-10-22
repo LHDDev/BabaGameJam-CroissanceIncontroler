@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cy6speli1s7o7"]
+[gd_scene load_steps=24 format=3 uid="uid://cy6speli1s7o7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fjl0a"]
 [ext_resource type="Script" path="res://Scripts/Pivot.cs" id="2_j3pop"]
 [ext_resource type="Texture2D" uid="uid://bh1sbsfaymno4" path="res://Assets/Graphics/Character/Character.png" id="2_qa666"]
 [ext_resource type="PackedScene" uid="uid://vuimbfptwkbf" path="res://Scenes/shear.tscn" id="3_q636i"]
+[ext_resource type="Script" path="res://Scripts/PlayerHurtBox.cs" id="5_47s1v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q0kej"]
 atlas = ExtResource("2_qa666")
@@ -85,35 +86,38 @@ animations = [{
 "frames": [SubResource("AtlasTexture_65j7x"), SubResource("AtlasTexture_s2812"), SubResource("AtlasTexture_rr3kv"), SubResource("AtlasTexture_625a3")],
 "loop": true,
 "name": &"MoveDown",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [SubResource("AtlasTexture_5pr2w"), SubResource("AtlasTexture_mns6a"), SubResource("AtlasTexture_an246"), SubResource("AtlasTexture_yngk7")],
 "loop": true,
 "name": &"MoveRight",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [SubResource("AtlasTexture_giwaa"), SubResource("AtlasTexture_8b4u3"), SubResource("AtlasTexture_1akjx"), SubResource("AtlasTexture_ekwu4")],
 "loop": true,
 "name": &"MoveUp",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jhrn"]
 size = Vector2(6, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syef4"]
-size = Vector2(6, 6.5)
+size = Vector2(6, 2.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_cooldownTimer")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_cooldownTimer", "_playerSprite")]
+position = Vector2(0, -15)
 script = ExtResource("1_fjl0a")
 _speed = 50
 _towardDelta = 25
 _cooldownTimer = NodePath("Cooldown")
 _cooldownValue = 0.5
+_playerSprite = NodePath("PlayerSprite")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_q1tdr")
-animation = &"IdleDown"
+animation = &"MoveDown"
+playing = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -139,13 +143,16 @@ _player = NodePath("../..")
 
 [node name="Cooldown" type="Timer" parent="."]
 
-[node name="HurtBox2" type="Area2D" parent="."]
+[node name="HurtBox2" type="Area2D" parent="." node_paths=PackedStringArray("_player") groups=["hurtbox_player"]]
 position = Vector2(0, 4)
+script = ExtResource("5_47s1v")
+pushBackForce = 250
+_player = NodePath("..")
 
-[node name="HurtBox" type="CollisionShape2D" parent="HurtBox2"]
+[node name="HurtBox" type="CollisionShape2D" parent="HurtBox2" groups=["hurtbox_player"]]
 shape = SubResource("RectangleShape2D_5jhrn")
 debug_color = Color(0.972549, 0, 0.027451, 0.419608)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13.25)
+position = Vector2(0, 15.25)
 shape = SubResource("RectangleShape2D_syef4")

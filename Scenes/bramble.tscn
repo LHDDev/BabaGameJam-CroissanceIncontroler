@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ok05hs183sps"]
+[gd_scene load_steps=4 format=3 uid="uid://ok05hs183sps"]
 
+[ext_resource type="Script" path="res://Scripts/Environement/Bramble.cs" id="1_0ak84"]
 [ext_resource type="Texture2D" uid="uid://bcg1ejyhtr584" path="res://Assets/Graphics/Bramble/Planche.png" id="1_xb2rt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_51oy4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2kgl"]
 size = Vector2(16, 16)
 
-[node name="Bramble" type="StaticBody2D"]
+[node name="Bramble" type="Node2D" node_paths=PackedStringArray("_thorn", "_hitBox")]
 position = Vector2(8, 8)
+script = ExtResource("1_0ak84")
+_thorn = NodePath("Thorn")
+_hitBox = NodePath("HitBox")
 
 [node name="Bramble" type="Sprite2D" parent="."]
 position = Vector2(-8, -8)
@@ -19,6 +23,9 @@ texture = ExtResource("1_xb2rt")
 hframes = 2
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-8, -8)
-shape = SubResource("RectangleShape2D_51oy4")
+shape = SubResource("RectangleShape2D_s2kgl")
+debug_color = Color(0.964706, 0, 0.486275, 0.419608)
