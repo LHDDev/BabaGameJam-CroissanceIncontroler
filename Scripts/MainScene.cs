@@ -94,6 +94,7 @@ public partial class MainScene : Node2D
 			if(up != null) result.AddRange(GetPositionOfGrowth(up));
 			else result.Add(tile.GlobalPosition + Vector2.Up * 16);
 		}
+
 		if(tile.GlobalPosition.y < _rightCorner.y){
 			Bramble down = FindBrambleFromGlobalCoord(tile.GlobalPosition + Vector2.Down * 16);
 			if(down  != null) result.AddRange(GetPositionOfGrowth(down));
