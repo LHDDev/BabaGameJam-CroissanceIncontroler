@@ -9,8 +9,6 @@ public partial class Player : CharacterBody2D
 	[Export]
 	private int _towardDelta;
 	[Export]
-	private Node2D _weapon;
-	[Export]
 	private Timer _cooldownTimer;
 	[Export]
 	private float _cooldownValue;
