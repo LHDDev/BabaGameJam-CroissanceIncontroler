@@ -1,0 +1,34 @@
+Gameplay:
+    ☐ Mouvement joueur
+    Attaques joueur:
+        ✔ Sécateur ( Shear ) @done (22/10/2022, 13:12:04)
+        ☐ Pelle ( Shovel )
+        ☐ Faux ( Scythe )
+        ☐ Liquide ( Spray )
+    ☐ Si 0 coeur => Mort
+
+    Citrouilles:
+        ☐ Normales
+            Posée sur une tile
+            Font pousser des ronces autours d'elles
+        ☐ Explosive
+            Comme les Normales
+            Exploses au contact
+            Juicyness : Faire gonfler la citrouille avant qu'elle Explose
+        ☐ Zombies
+            Quand le joueur arrive dans la zone de détection, le poursuivre
+            Dépose des graines à intervales réguliées si en Mouvement
+    Ronces:
+        ☐ A intervalles réguliés, poussent sur au contact d'une ronce reliée à une citrouille
+        ☐ Réseau déconnecté des citrouilles => il disparaît d'un coup
+    Collectables:
+        ☐ Coeur
+            Redonne 1 coeur
+        ☐ Armes
+            Dévérouille l'arme correspondante
+
+    Score:
+        ☐ Temps de survie
+        ☐ Citrouilles détruites
+
+    Citrouille en dehors non accessible

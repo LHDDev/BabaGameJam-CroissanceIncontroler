@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ok05hs183sps"]
+
+[ext_resource type="Texture2D" uid="uid://bcg1ejyhtr584" path="res://Assets/Graphics/Bramble/Planche.png" id="1_xb2rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51oy4"]
+size = Vector2(16, 16)
+
+[node name="Bramble" type="StaticBody2D"]
+position = Vector2(8, 8)
+
+[node name="Bramble" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("1_xb2rt")
+hframes = 2
+
+[node name="Thorn" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("1_xb2rt")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_51oy4")
