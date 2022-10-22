@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://banfjsou73x62"]
+[gd_scene load_steps=13 format=3 uid="uid://banfjsou73x62"]
 
 [ext_resource type="PackedScene" uid="uid://dopdilv6rgt6o" path="res://Scenes/audio_player.tscn" id="1_5mrya"]
+[ext_resource type="Script" path="res://Scripts/MainScene.cs" id="1_c4hvj"]
 [ext_resource type="PackedScene" uid="uid://cy6speli1s7o7" path="res://Scenes/player.tscn" id="2_2m3xv"]
 [ext_resource type="PackedScene" uid="uid://ok05hs183sps" path="res://Scenes/bramble.tscn" id="3_kbaqi"]
 [ext_resource type="PackedScene" uid="uid://codb56fhab05c" path="res://Scenes/normal_pumpkin.tscn" id="4_b06em"]
+[ext_resource type="Texture2D" uid="uid://dcb2tv6dxghdq" path="res://Assets/Graphics/Fance/Fance.png" id="5_kgwil"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qk5tq"]
 resource_name = "Bramble"
@@ -12,7 +14,27 @@ scenes/1/scene = ExtResource("3_kbaqi")
 [sub_resource type="TileSet" id="TileSet_2uy5g"]
 sources/0 = SubResource("TileSetScenesCollectionSource_qk5tq")
 
-[node name="MainScene" type="Node2D"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_skq0r"]
+a = Vector2(-208, 102)
+b = Vector2(208, 102)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4ssq6"]
+a = Vector2(-206, -104)
+b = Vector2(-206, 104)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wgvo7"]
+a = Vector2(-208, -102)
+b = Vector2(208, -102)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_43mep"]
+a = Vector2(206, -104)
+b = Vector2(206, 104)
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_level")]
+script = ExtResource("1_c4hvj")
+_level = NodePath("Scene")
+_brambleScenePath = "res://Scenes/bramble.tscn"
+_spriteOffSet = Vector2i(8, 8)
 
 [node name="AudioPlayer" parent="." instance=ExtResource("1_5mrya")]
 
@@ -24,7 +46,24 @@ layer_0/name = "BrambleLayer"
 layer_0/modulate = Color(0.223529, 1, 0.305882, 1)
 layer_0/y_sort_enabled = true
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 262144, 0, 65536, 327680, 0, 65536, 393216, 0, 65536, 458752, 0, 65536, 524288, 0, 65536, 589824, 0, 65536, 655360, 0, 65536, 720896, 0, 65536, 786432, 0, 65536, 851968, 0, 65536, 917504, 0, 65536, 983040, 0, 65536, 1048576, 0, 65536, 1048577, 0, 65536, 1048578, 0, 65536, 1048579, 0, 65536, 1048580, 0, 65536, 1048596, 0, 65536, 1048595, 0, 65536, 1048594, 0, 65536, 1048593, 0, 65536, 1048592, 0, 65536, 1048591, 0, 65536, 1048590, 0, 65536, 1048589, 0, 65536, 1048584, 0, 65536, 1048583, 0, 65536, 1048582, 0, 65536, 1048581, 0, 65536, 1, 0, 65536, 1048605, 0, 65536, 1048597, 0, 65536, 1048598, 0, 65536, 1048599, 0, 65536, 1048600, 0, 65536, 1048601, 0, 65536, 1048602, 0, 65536, 1048603, 0, 65536, 1048604, 0, 65536, 29, 0, 65536, 28, 0, 65536, 27, 0, 65536, 26, 0, 65536, 25, 0, 65536, 24, 0, 65536, 23, 0, 65536, 22, 0, 65536, 21, 0, 65536, 20, 0, 65536, 19, 0, 65536, 18, 0, 65536, 17, 0, 65536, 16, 0, 65536, 15, 0, 65536, 14, 0, 65536, 13, 0, 65536, 12, 0, 65536, 11, 0, 65536, 10, 0, 65536, 9, 0, 65536, 8, 0, 65536, 7, 0, 65536, 6, 0, 65536, 5, 0, 65536, 4, 0, 65536, 3, 0, 65536, 2, 0, 65536, 65565, 0, 65536, 131101, 0, 65536, 196637, 0, 65536, 262173, 0, 65536, 327709, 0, 65536, 393245, 0, 65536, 458781, 0, 65536, 524317, 0, 65536, 589853, 0, 65536, 655389, 0, 65536, 720925, 0, 65536, 786461, 0, 65536, 851997, 0, 65536, 917533, 0, 65536, 983069, 0, 65536, 1048588, 0, 65536, 1048587, 0, 65536, 1048586, 0, 65536, 1048585, 0, 65536)
+
+[node name="Fance" type="StaticBody2D" parent="."]
+position = Vector2(240, 136)
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Fance"]
+shape = SubResource("SegmentShape2D_skq0r")
+
+[node name="RightCollision2" type="CollisionShape2D" parent="Fance"]
+shape = SubResource("SegmentShape2D_4ssq6")
+
+[node name="UpCollision" type="CollisionShape2D" parent="Fance"]
+shape = SubResource("SegmentShape2D_wgvo7")
+
+[node name="LeftCollision3" type="CollisionShape2D" parent="Fance"]
+shape = SubResource("SegmentShape2D_43mep")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fance"]
+texture = ExtResource("5_kgwil")
 
 [node name="Player" parent="." instance=ExtResource("2_2m3xv")]
 position = Vector2(178, 145)

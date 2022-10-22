@@ -139,6 +139,7 @@ color = Color(0.215554, 0.679549, 0.264432, 1)
 script = ExtResource("2_j3pop")
 
 [node name="Shear" parent="Pivot" node_paths=PackedStringArray("_player") instance=ExtResource("3_q636i")]
+z_index = 100
 _player = NodePath("../..")
 
 [node name="Cooldown" type="Timer" parent="."]

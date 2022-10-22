@@ -7,8 +7,9 @@ size = Vector2(12, 4)
 
 [node name="NormalPumpkin" type="StaticBody2D"]
 
-[node name="PumpkinCore" type="Node" parent="."]
+[node name="PumpkinCore" type="Node" parent="." node_paths=PackedStringArray("_cooldownDropSeedTimer")]
 script = ExtResource("1_w8w7k")
+_cooldownDropSeedTimer = NodePath("../CooldownSeed")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -27,3 +28,5 @@ offset_right = 8.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.819608, 0.368627, 0.133333, 1)
+
+[node name="CooldownSeed" type="Timer" parent="."]
