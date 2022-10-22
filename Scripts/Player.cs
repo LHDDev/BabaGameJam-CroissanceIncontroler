@@ -3,7 +3,15 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-
+	private enum Weapon {
+		Shear,
+		Spray,
+		Shovel,
+		Scythe
+	};
+	
+	[Export]
+	private Attack attackArea;
 	[Export]
 	private int _speed;
 	[Export]
@@ -17,10 +25,15 @@ public partial class Player : CharacterBody2D
 
 	private bool _canAttack = true;
 	private bool _canMove = true;
-
+	
+	[Export]
+	private int _weapon = 0;
+	
 	[Signal]
-	public delegate void AttackEventHandler();
+	public delegate void AttackEventHandler(String attack_name);
 	public override void _Ready(){
+		this.Attack += attackArea.onPlayerAttack;
+		
 		_cooldownTimer.WaitTime = _cooldownValue;
 		_cooldownTimer.Timeout += onCooldownFinished;
 	}
@@ -29,7 +42,7 @@ public partial class Player : CharacterBody2D
 	{
 		if(Input.IsMouseButtonPressed(MouseButton.Left) && _canAttack){
 			_canAttack = false;
-			EmitSignal(nameof(Attack));
+			EmitSignal(nameof(Attack), Enum.GetName(typeof(Weapon), _weapon));
 			_cooldownTimer.Start();
 		}
 
