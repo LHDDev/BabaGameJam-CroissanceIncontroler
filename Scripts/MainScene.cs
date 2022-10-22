@@ -11,6 +11,10 @@ public partial class MainScene : Node2D
 	private string _brambleScenePath;
 	[Export]
 	private Vector2i _spriteOffSet;
+	[Export]
+	private Vector2 _rightCorner;
+	[Export]
+	private Vector2 _leftCorner;
 
 	private List<Bramble> visitedNode = new List<Bramble>();
 	private List<Bramble> toVisiteNode = new List<Bramble>();
@@ -52,20 +56,60 @@ public partial class MainScene : Node2D
 
 	public void Growth(){
 		// Get All Brambles
-		toVisiteNode = _level.FindChildrenOfType<Bramble>();
+		toVisiteNode = _level.FindChildrenOfType<Bramble>().Where(b => b.GlobalPosition >= _leftCorner && b.GlobalPosition >= _rightCorner).ToList<Bramble>();
+		foreach(Bramble bramble in toVisiteNode){
+			foreach(Vector2 pos in GetPositionOfGrowth(bramble))
+			{
+				Vector2i mapCoord = _level.LocalToMap(pos);
+				PlaceTiles(mapCoord.x,mapCoord.y);
+			}
+		}
 	}
 
-	// public List<Vector2i> GetPositionOfGrowth(Bramble tile){
-	// 	if(visitedNode.Contains(tile) || toVisiteNode.Contains(tile))
-	// 	{
-	// 		return new List<Vector2i>();
-	// 	}
-	// 	visitedNode.Add(tile);
-	// 	toVisiteNode.Remove(tile);
-	// 	Vector2i mapCoord = _level.LocalToMap(tile.GlobalPosition);
+	public List<Vector2> GetPositionOfGrowth(Bramble tile){
+		List<Vector2> result = new List<Vector2>();
+		if(visitedNode.Contains(tile))
+		{
+			return result;
+		}
+		visitedNode.Add(tile);
+		
+		if(tile.GlobalPosition.x > _leftCorner.x) {
+
+			Bramble east = FindBrambleFromGlobalCoord(tile.GlobalPosition + Vector2.Left * 16);
+			if(east != null) result.AddRange(GetPositionOfGrowth(east));
+			else result.Add(tile.GlobalPosition + Vector2.Left * 16);
+		}
+
+		if(tile.GlobalPosition.x < _rightCorner.x){
+
+			Bramble west = FindBrambleFromGlobalCoord(tile.GlobalPosition + Vector2.Right * 16);
+			else result.Add(tile.GlobalPosition + Vector2.Right * 16);	
+			if(west != null) result.AddRange(GetPositionOfGrowth(west));
+		}
+
+		if(tile.GlobalPosition.y > _leftCorner.y){
+
+			Bramble up = FindBrambleFromGlobalCoord(tile.GlobalPosition + Vector2.Up * 16);	
+			if(up != null) result.AddRange(GetPositionOfGrowth(up));
+			else result.Add(tile.GlobalPosition + Vector2.Up * 16);
+		}
+		
+		if(tile.GlobalPosition.y < _rightCorner.y){
+			Bramble down = FindBrambleFromGlobalCoord(tile.GlobalPosition + Vector2.Down * 16);
+			if(down  != null) result.AddRange(GetPositionOfGrowth(down));
+			else result.Add(tile.GlobalPosition + Vector2.Down * 16);
+		}
+
+
+		return result;
 
 		
-	// }
+	}
+
+	public Bramble FindBrambleFromGlobalCoord(Vector2 coord){
+		return _level.FindChildrenOfType<Bramble>().FirstOrDefault(b => b.GlobalPosition == coord);
+	}
 
 	
 }

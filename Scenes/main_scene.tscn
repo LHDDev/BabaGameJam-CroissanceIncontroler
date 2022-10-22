@@ -65,6 +65,10 @@ shape = SubResource("SegmentShape2D_43mep")
 [node name="Sprite2D" type="Sprite2D" parent="Fance"]
 texture = ExtResource("5_kgwil")
 
+[node name="Player" parent="." instance=ExtResource("2_2m3xv")]
+position = Vector2(178, 145)
+_speed = 100
+
 [node name="NormalPumpkin" parent="." instance=ExtResource("4_b06em")]
 position = Vector2(248, 96)
 
