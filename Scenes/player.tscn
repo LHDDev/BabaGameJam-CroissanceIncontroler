@@ -345,12 +345,13 @@ size = Vector2(6, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syef4"]
 size = Vector2(6, 6.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attackArea", "_cooldownTimer", "_playerSprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("attackArea", "_cooldownTimer", "_playerSprite", "_weaponDurationTimer")]
 collision_layer = 2
 script = ExtResource("1_fjl0a")
 attackArea = NodePath("Pivot/Attack")
 _cooldownTimer = NodePath("Cooldown")
 _playerSprite = NodePath("PlayerSprite")
+_weaponDurationTimer = NodePath("WeaponDurationTimer")
 _weapon = 3
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]

@@ -4,10 +4,10 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	private enum Weapon {
-		Scythe,
+		Shear,
 		Spray,
 		Shovel,
-		Shear
+		Scythe
 	};
 	
 	[Export]
@@ -22,6 +22,8 @@ public partial class Player : CharacterBody2D
 	private float _cooldownValue;
 	[Export]
 	private AnimatedSprite2D _playerSprite;
+	[Export]
+	private Timer _weaponDurationTimer;
 	
 	
 	private bool _canAttack = true;
@@ -39,6 +41,7 @@ public partial class Player : CharacterBody2D
 		bus.Collect += onCollectableCollected;
 		_cooldownTimer.WaitTime = _cooldownValue;
 		_cooldownTimer.Timeout += onCooldownFinished;
+		_weaponDurationTimer.Timeout += onWeaponDurationTimerTimeout;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -65,7 +68,6 @@ public partial class Player : CharacterBody2D
 			if(_playerSprite.Animation == "MoveDown") _playerSprite.Animation="IdleDown";
 		}
 		else{
-			GD.Print("Anima toi !!");
 			_playerSprite.FlipH = Velocity.x < 0;
 			if(Velocity.x != 0){
 				_playerSprite.Animation = "MoveRight";
@@ -106,5 +108,10 @@ public partial class Player : CharacterBody2D
 	public void onCollectableCollected(int collectableType){
 		GD.Print("Collectable collected " + collectableType);
 		_weapon = collectableType;
+		_weaponDurationTimer.Start();
+	}
+	
+	public void onWeaponDurationTimerTimeout(){
+		_weapon = 0;
 	}
 }
