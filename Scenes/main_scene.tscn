@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dopdilv6rgt6o" path="res://Scenes/audio_player.tscn" id="1_5mrya"]
 [ext_resource type="Script" path="res://Scripts/MainScene.cs" id="1_c4hvj"]
-[ext_resource type="PackedScene" uid="uid://cy6speli1s7o7" path="res://Scenes/player.tscn" id="2_2m3xv"]
-[ext_resource type="PackedScene" uid="uid://du5nyh5jaod21" path="res://Scenes/player.tscn" id="2_2m3xv"]
+[ext_resource type="PackedScene" uid="uid://wj6e7vodve8q" path="res://Scenes/player.tscn" id="2_2m3xv"]
 [ext_resource type="PackedScene" uid="uid://ok05hs183sps" path="res://Scenes/bramble.tscn" id="3_kbaqi"]
 [ext_resource type="PackedScene" uid="uid://codb56fhab05c" path="res://Scenes/normal_pumpkin.tscn" id="4_b06em"]
 [ext_resource type="Texture2D" uid="uid://dcb2tv6dxghdq" path="res://Assets/Graphics/Fance/Fance.png" id="5_kgwil"]
@@ -31,9 +30,8 @@ b = Vector2(208, -102)
 a = Vector2(206, -104)
 b = Vector2(206, 104)
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_level")]
+[node name="MainScene" type="Node2D"]
 script = ExtResource("1_c4hvj")
-_level = NodePath("Scene")
 _brambleScenePath = "res://Scenes/bramble.tscn"
 _spriteOffSet = Vector2i(8, 8)
 
@@ -65,11 +63,12 @@ shape = SubResource("SegmentShape2D_43mep")
 
 [node name="Sprite2D" type="Sprite2D" parent="Fance"]
 texture = ExtResource("5_kgwil")
-layer_0/tile_data = PackedInt32Array(0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 262144, 0, 65536, 327680, 0, 65536, 393216, 0, 65536, 458752, 0, 65536, 524288, 0, 65536, 589824, 0, 65536, 655360, 0, 65536, 720896, 0, 65536, 786432, 0, 65536, 851968, 0, 65536, 917504, 0, 65536, 983040, 0, 65536, 1048576, 0, 65536, 1048577, 0, 65536, 1048578, 0, 65536, 1048579, 0, 65536, 1048580, 0, 65536, 1048596, 0, 65536, 1048595, 0, 65536, 1048594, 0, 65536, 1048593, 0, 65536, 1048592, 0, 65536, 1048591, 0, 65536, 1048590, 0, 65536, 1048589, 0, 65536, 1048584, 0, 65536, 1048583, 0, 65536, 1048582, 0, 65536, 1048581, 0, 65536, 1, 0, 65536, 1048605, 0, 65536, 1048597, 0, 65536, 1048598, 0, 65536, 1048599, 0, 65536, 1048600, 0, 65536, 1048601, 0, 65536, 1048602, 0, 65536, 1048603, 0, 65536, 1048604, 0, 65536, 29, 0, 65536, 28, 0, 65536, 27, 0, 65536, 26, 0, 65536, 25, 0, 65536, 24, 0, 65536, 23, 0, 65536, 22, 0, 65536, 21, 0, 65536, 20, 0, 65536, 19, 0, 65536, 18, 0, 65536, 17, 0, 65536, 16, 0, 65536, 15, 0, 65536, 14, 0, 65536, 13, 0, 65536, 12, 0, 65536, 11, 0, 65536, 10, 0, 65536, 9, 0, 65536, 8, 0, 65536, 7, 0, 65536, 6, 0, 65536, 5, 0, 65536, 4, 0, 65536, 3, 0, 65536, 2, 0, 65536, 65565, 0, 65536, 131101, 0, 65536, 196637, 0, 65536, 262173, 0, 65536, 327709, 0, 65536, 393245, 0, 65536, 458781, 0, 65536, 524317, 0, 65536, 589853, 0, 65536, 655389, 0, 65536, 720925, 0, 65536, 786461, 0, 65536, 851997, 0, 65536, 917533, 0, 65536, 983069, 0, 65536, 1048588, 0, 65536, 1048587, 0, 65536, 1048586, 0, 65536, 1048585, 0, 65536)
-
-[node name="Player" parent="." instance=ExtResource("2_2m3xv")]
-position = Vector2(178, 145)
-_speed = 100
 
 [node name="NormalPumpkin" parent="." instance=ExtResource("4_b06em")]
 position = Vector2(248, 96)
+
+[node name="Player" parent="." instance=ExtResource("2_2m3xv")]
+position = Vector2(145, 145)
+_speed = 100
+_towardDelta = 25
+_cooldownValue = 0.5

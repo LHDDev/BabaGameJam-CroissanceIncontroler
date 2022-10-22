@@ -11,7 +11,7 @@ public partial class Player : CharacterBody2D
 	};
 	
 	[Export]
-	private PlayerAttack attackArea;
+	private Attack attackArea;
 	[Export]
 	private int _speed;
 	[Export]
@@ -25,7 +25,6 @@ public partial class Player : CharacterBody2D
 
 	private bool _canAttack = true;
 	private bool _canMove = true;
-	private bool _canAttack = true;
 	
 	[Export]
 	private int _weapon = 0;
