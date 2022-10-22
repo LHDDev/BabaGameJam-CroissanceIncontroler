@@ -352,7 +352,6 @@ attackArea = NodePath("Pivot/Attack")
 _cooldownTimer = NodePath("Cooldown")
 _playerSprite = NodePath("PlayerSprite")
 _weaponDurationTimer = NodePath("WeaponDurationTimer")
-_weapon = 3
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 frames = ExtResource("2_7irjt")

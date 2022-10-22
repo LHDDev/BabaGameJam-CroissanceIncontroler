@@ -109,9 +109,15 @@ public partial class Player : CharacterBody2D
 		GD.Print("Collectable collected " + collectableType);
 		_weapon = collectableType;
 		_weaponDurationTimer.Start();
+		
+		EventBus bus = GetTree().Root.GetNode<EventBus>("EventBus");
+		bus.EmitSignal(nameof(bus.WeaponEquiped), _weapon);
 	}
 	
 	public void onWeaponDurationTimerTimeout(){
 		_weapon = 0;
+		
+		EventBus bus = GetTree().Root.GetNode<EventBus>("EventBus");
+		bus.EmitSignal(nameof(bus.WeaponEquiped), _weapon);
 	}
 }
