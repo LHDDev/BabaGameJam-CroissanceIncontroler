@@ -7,7 +7,6 @@
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qk5tq"]
 resource_name = "Bramble"
 scenes/1/scene = ExtResource("3_kbaqi")
-scenes/1/display_placeholder = ExtResource("3_kbaqi")
 
 [sub_resource type="TileSet" id="TileSet_2uy5g"]
 sources/0 = SubResource("TileSetScenesCollectionSource_qk5tq")
