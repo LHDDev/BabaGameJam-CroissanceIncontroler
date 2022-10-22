@@ -352,7 +352,6 @@ attackArea = NodePath("Pivot/Attack")
 _cooldownTimer = NodePath("Cooldown")
 _playerSprite = NodePath("PlayerSprite")
 _weaponDurationTimer = NodePath("WeaponDurationTimer")
-_weapon = 3
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 frames = ExtResource("2_7irjt")
@@ -385,29 +384,33 @@ animationPlayer = NodePath("AnimationPlayer")
 [node name="Shear" type="CollisionShape2D" parent="Pivot/Attack"]
 position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_bnnfo")
+disabled = true
 debug_color = Color(1, 0.0196078, 0, 0.419608)
 
 [node name="Scythe" type="CollisionShape2D" parent="Pivot/Attack"]
 visible = false
 shape = SubResource("CircleShape2D_fst13")
+disabled = true
 debug_color = Color(1, 0.0196078, 0, 0.419608)
 
 [node name="Spray" type="CollisionPolygon2D" parent="Pivot/Attack"]
 visible = false
 position = Vector2(12, 0)
 polygon = PackedVector2Array(-2, 0, 21, -19, 21, 19)
+disabled = true
 
 [node name="Shovel" type="CollisionShape2D" parent="Pivot/Attack"]
 visible = false
 position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_mhdos")
+disabled = true
 debug_color = Color(1, 0.0196078, 0, 0.419608)
 
 [node name="AttackSprite" type="AnimatedSprite2D" parent="Pivot/Attack"]
 visible = false
 position = Vector2(40, 0)
 frames = SubResource("SpriteFrames_tax56")
-animation = &"Scythe"
+animation = &"Schear"
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Attack"]
@@ -417,9 +420,10 @@ libraries = {
 
 [node name="Cooldown" type="Timer" parent="."]
 
-[node name="HurtBox2" type="Area2D" parent="." groups=["hurtbox_player"]]
+[node name="HurtBox2" type="Area2D" parent="." node_paths=PackedStringArray("_player") groups=["hurtbox_player"]]
 position = Vector2(0, 4)
 script = ExtResource("5_47s1v")
+_player = NodePath("..")
 
 [node name="HurtBox" type="CollisionShape2D" parent="HurtBox2" groups=["hurtbox_player"]]
 shape = SubResource("RectangleShape2D_5jhrn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj4201puu2wq3"]
+[gd_scene load_steps=4 format=3 uid="uid://ddlotcrl0gs4j"]
 
 [ext_resource type="Script" path="res://Scripts/Collectable.cs" id="1_keylm"]
 [ext_resource type="Texture2D" uid="uid://cmstfx2iiaolf" path="res://Assets/Graphics/Collectables/Collectables.png" id="2_17kl0"]

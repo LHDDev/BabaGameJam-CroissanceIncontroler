@@ -27,5 +27,6 @@ public partial class Bramble : Node2D
 			((PlayerHurtBox)entertedArea).Hurt();
 		}
 	}
+	
 
 }
