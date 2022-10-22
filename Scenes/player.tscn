@@ -1,7 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://wj6e7vodve8q"]
+[gd_scene load_steps=38 format=3 uid="uid://cy6speli1s7o7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fjl0a"]
-[ext_resource type="SpriteFrames" uid="uid://cmbk28rri2hh" path="res://Scenes/AttackAnimation.tres" id="2_7irjt"]
+[ext_resource type="SpriteFrames" uid="uid://gflbeiev1nl7" path="res://Scenes/AttackAnimation.tres" id="2_7irjt"]
 [ext_resource type="Script" path="res://Scripts/Pivot.cs" id="2_j3pop"]
 [ext_resource type="Script" path="res://Scripts/Attack.cs" id="4_u3a12"]
 [ext_resource type="Texture2D" uid="uid://bo2dqo2sm3eac" path="res://Assets/Graphics/Attack/AttackSpriteSheet.png" id="5_7tbr7"]
