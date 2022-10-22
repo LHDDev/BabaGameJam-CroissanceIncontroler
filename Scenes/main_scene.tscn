@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://banfjsou73x62"]
+
+[ext_resource type="PackedScene" uid="uid://dopdilv6rgt6o" path="res://Scenes/audio_player.tscn" id="1_5mrya"]
+[ext_resource type="PackedScene" uid="uid://cy6speli1s7o7" path="res://Scenes/player.tscn" id="2_2m3xv"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="AudioPlayer" parent="." instance=ExtResource("1_5mrya")]
+
+[node name="Player" parent="." instance=ExtResource("2_2m3xv")]
+position = Vector2(178, 145)
+_speed = 200
+_towardDelta = 25

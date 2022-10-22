@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy6speli1s7o7"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fjl0a"]
+[ext_resource type="Script" path="res://Scripts/Pivot.cs" id="2_j3pop"]
+[ext_resource type="Script" path="res://Scripts/Weapon/Shear.cs" id="3_f2f76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jhrn"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvrlr"]
+size = Vector2(10, 10)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_weapon", "_cooldownTimer")]
+script = ExtResource("1_fjl0a")
+_speed = 100
+_towardDelta = 25
+_weapon = NodePath("Pivot/Shear")
+_cooldownTimer = NodePath("Cooldown")
+_cooldownValue = 0.5
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2i(16, 16)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215554, 0.679549, 0.264432, 1)
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5jhrn")
+debug_color = Color(0, 0.6, 0.556863, 0.419608)
+
+[node name="Pivot" type="Node2D" parent="."]
+script = ExtResource("2_j3pop")
+
+[node name="Shear" type="Node2D" parent="Pivot" node_paths=PackedStringArray("_player")]
+script = ExtResource("3_f2f76")
+_player = NodePath("../..")
+_finalPos = Vector2(10, 0)
+_attackSpeed = 0.1
+
+[node name="HitBox" type="Area2D" parent="Pivot/Shear"]
+position = Vector2(17, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Shear/HitBox"]
+shape = SubResource("RectangleShape2D_pvrlr")
+
+[node name="ColorRect" type="ColorRect" parent="Pivot/Shear/HitBox"]
+custom_minimum_size = Vector2i(10, 10)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.976471, 0.290196, 0.235294, 1)
+
+[node name="Cooldown" type="Timer" parent="."]
