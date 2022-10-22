@@ -1,8 +1,102 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy6speli1s7o7"]
+[gd_scene load_steps=23 format=3 uid="uid://cy6speli1s7o7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_fjl0a"]
 [ext_resource type="Script" path="res://Scripts/Pivot.cs" id="2_j3pop"]
+[ext_resource type="Texture2D" uid="uid://bh1sbsfaymno4" path="res://Assets/Graphics/Character/Character.png" id="2_qa666"]
 [ext_resource type="Script" path="res://Scripts/Weapon/Shear.cs" id="3_f2f76"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0kej"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i602"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svd53"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65j7x"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2812"]
+atlas = ExtResource("2_qa666")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr3kv"]
+atlas = ExtResource("2_qa666")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_625a3"]
+atlas = ExtResource("2_qa666")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pr2w"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mns6a"]
+atlas = ExtResource("2_qa666")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an246"]
+atlas = ExtResource("2_qa666")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yngk7"]
+atlas = ExtResource("2_qa666")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giwaa"]
+atlas = ExtResource("2_qa666")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b4u3"]
+atlas = ExtResource("2_qa666")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1akjx"]
+atlas = ExtResource("2_qa666")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekwu4"]
+atlas = ExtResource("2_qa666")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1tdr"]
+animations = [{
+"frames": [SubResource("AtlasTexture_q0kej")],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_0i602")],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_svd53")],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_65j7x"), SubResource("AtlasTexture_s2812"), SubResource("AtlasTexture_rr3kv"), SubResource("AtlasTexture_625a3")],
+"loop": true,
+"name": &"MoveDown",
+"speed": 10.0
+}, {
+"frames": [SubResource("AtlasTexture_5pr2w"), SubResource("AtlasTexture_mns6a"), SubResource("AtlasTexture_an246"), SubResource("AtlasTexture_yngk7")],
+"loop": true,
+"name": &"MoveRight",
+"speed": 10.0
+}, {
+"frames": [SubResource("AtlasTexture_giwaa"), SubResource("AtlasTexture_8b4u3"), SubResource("AtlasTexture_1akjx"), SubResource("AtlasTexture_ekwu4")],
+"loop": true,
+"name": &"MoveUp",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jhrn"]
 size = Vector2(16, 16)
@@ -19,8 +113,11 @@ _cooldownTimer = NodePath("Cooldown")
 _cooldownValue = 0.5
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_q1tdr")
+animation = &"IdleDown"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2i(16, 16)
 anchors_preset = 8
 anchor_left = 0.5
