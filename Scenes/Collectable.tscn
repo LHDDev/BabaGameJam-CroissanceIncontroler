@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj4201puu2wq3"]
+
+[ext_resource type="Script" path="res://Scripts/Collectable.cs" id="1_keylm"]
+[ext_resource type="Texture2D" uid="uid://cmstfx2iiaolf" path="res://Assets/Graphics/Collectables/Collectables.png" id="2_17kl0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0if4g"]
+radius = 26.0
+
+[node name="Collectable" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_keylm")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_17kl0")
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0if4g")
