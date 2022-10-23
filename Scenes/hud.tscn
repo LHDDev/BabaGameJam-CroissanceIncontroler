@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxlyur7bbt1ao"]
+
+[ext_resource type="Script" path="res://Scripts/hud.cs" id="1_1a1bb"]
+[ext_resource type="Texture2D" uid="uid://dtw1rm5yftngl" path="res://Assets/Graphics/HUD/WeaponHUD.png" id="1_7cfya"]
+[ext_resource type="Texture2D" uid="uid://cmstfx2iiaolf" path="res://Assets/Graphics/Collectables/Collectables.png" id="2_jpns2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o3usl"]
+load_path = "res://.godot/imported/HeartHUD.png-5cd3dd8cdc694eab08909d4e312c1bf0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb85d"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_o3usl")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fettd"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_o3usl")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq1aw"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_o3usl")
+region = Rect2(15, 0, 15, 15)
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("_sprite", "heartsContainer")]
+script = ExtResource("1_1a1bb")
+_sprite = NodePath("MarginContainer/HBoxContainer/WeaponBackground/Sprite2D")
+heartsContainer = NodePath("MarginContainer/HBoxContainer/Hearts")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 476.0
+offset_bottom = 266.0
+
+[node name="WeaponBackground" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+offset_right = 37.0
+offset_bottom = 262.0
+texture = ExtResource("1_7cfya")
+stretch_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/HBoxContainer/WeaponBackground"]
+position = Vector2(-4, -4)
+texture = ExtResource("2_jpns2")
+centered = false
+offset = Vector2(6.5, 6.5)
+hframes = 4
+
+[node name="Hearts" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+offset_left = 41.0
+offset_right = 94.0
+offset_bottom = 262.0
+
+[node name="Heart1" type="TextureRect" parent="MarginContainer/HBoxContainer/Hearts"]
+layout_mode = 2
+offset_right = 15.0
+offset_bottom = 262.0
+texture = SubResource("AtlasTexture_jb85d")
+stretch_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="MarginContainer/HBoxContainer/Hearts"]
+layout_mode = 2
+offset_left = 19.0
+offset_right = 34.0
+offset_bottom = 262.0
+texture = SubResource("AtlasTexture_fettd")
+stretch_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="MarginContainer/HBoxContainer/Hearts"]
+layout_mode = 2
+offset_left = 38.0
+offset_right = 53.0
+offset_bottom = 262.0
+texture = SubResource("AtlasTexture_fq1aw")
+stretch_mode = 2

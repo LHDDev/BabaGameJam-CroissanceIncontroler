@@ -24,7 +24,10 @@ public partial class Player : CharacterBody2D
 	private AnimatedSprite2D _playerSprite;
 	[Export]
 	private Timer _weaponDurationTimer;
+	[Export]
+	private int hp = 3;
 	
+	EventBus bus = null;
 	
 	private bool _canAttack = true;
 	private bool _canMove = true;
@@ -37,7 +40,8 @@ public partial class Player : CharacterBody2D
 	public override void _Ready(){
 		this.Attack += attackArea.onPlayerAttack;
 		
-		EventBus bus = GetTree().Root.GetNode<EventBus>("EventBus");
+		bus = GetTree().Root.GetNode<EventBus>("EventBus");
+		
 		bus.Collect += onCollectableCollected;
 		_cooldownTimer.WaitTime = _cooldownValue;
 		_cooldownTimer.Timeout += onCooldownFinished;
@@ -79,6 +83,17 @@ public partial class Player : CharacterBody2D
 
 		}
 	}
+	
+	public void SetHp(int new_value){
+		if (hp < 0 || hp > 3){
+			return;
+		}
+		
+		GD.Print("HP: " + hp);
+		hp = new_value;
+		bus.EmitSignal(nameof(bus.PlayerHpChanged), hp);
+	}
+	
 	public void MovePlayer(Vector2 dir){
 
 		if(dir !=  Vector2.Zero && _canMove)
@@ -103,15 +118,20 @@ public partial class Player : CharacterBody2D
 		GD.Print(Velocity + "STOP PUSH");
 		_canMove = true;
 		_canAttack = true;
+		SetHp(hp - 1);
 	}
 	
 	public void onCollectableCollected(int collectableType){
 		GD.Print("Collectable collected " + collectableType);
 		_weapon = collectableType;
 		_weaponDurationTimer.Start();
+		
+		bus.EmitSignal(nameof(bus.WeaponEquiped), _weapon);
 	}
 	
 	public void onWeaponDurationTimerTimeout(){
 		_weapon = 0;
+		
+		bus.EmitSignal(nameof(bus.WeaponEquiped), _weapon);
 	}
 }
