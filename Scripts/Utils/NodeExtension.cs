@@ -39,16 +39,24 @@ namespace Scripts.Utils
         public static List<T> FindChildrenOfType<T>(this Node node) where T : Node
         {
             var children = node.GetChildren();
-            var nodes = new Array<Node>(children);
-            var uncasted = nodes.Where(_ => _.GetType() == typeof(T));
 
             List<T> result = new List<T>();
-            foreach (var toCast in uncasted)
+            foreach (var toCast in children.Where(n => n.GetType() == typeof(T)))
             {
                 result.Add((T)toCast);
             }
-
             return result;
+        }
+        public static List<T> FindChildrenOfType<T>(this Node node, Func<T,bool> lambda) where T : Node
+        {
+            var children = node.GetChildren();
+
+            List<T> result = new List<T>();
+            foreach (var toCast in children.Where(n => n.GetType() == typeof(T)))
+            {
+                result.Add((T)toCast);
+            }
+            return result.Where(lambda).ToList();
         }
     }
 }
