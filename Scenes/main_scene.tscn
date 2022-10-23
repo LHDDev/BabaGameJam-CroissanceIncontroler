@@ -1,13 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://banfjsou73x62"]
+[gd_scene load_steps=11 format=3 uid="uid://banfjsou73x62"]
 
 [ext_resource type="PackedScene" uid="uid://dopdilv6rgt6o" path="res://Scenes/audio_player.tscn" id="1_5mrya"]
 [ext_resource type="Script" path="res://Scripts/MainScene.cs" id="1_c4hvj"]
 [ext_resource type="PackedScene" uid="uid://dxlyur7bbt1ao" path="res://Scenes/hud.tscn" id="2_2j702"]
 [ext_resource type="PackedScene" uid="uid://cy6speli1s7o7" path="res://Scenes/player.tscn" id="2_2m3xv"]
-[ext_resource type="PackedScene" uid="uid://codb56fhab05c" path="res://Scenes/normal_pumpkin.tscn" id="4_b06em"]
 [ext_resource type="Texture2D" uid="uid://dcb2tv6dxghdq" path="res://Assets/Graphics/Fance/Fance.png" id="5_kgwil"]
 [ext_resource type="PackedScene" uid="uid://bj4201puu2wq3" path="res://Scenes/Collectable.tscn" id="7_lc2ef"]
 [ext_resource type="PackedScene" uid="uid://ok05hs183sps" path="res://Scenes/bramble.tscn" id="8_jn5kv"]
+
 
 [sub_resource type="TileSet" id="TileSet_2uy5g"]
 
@@ -31,6 +31,7 @@ b = Vector2(206, 104)
 script = ExtResource("1_c4hvj")
 _level = NodePath("Scene")
 _brambleScenePath = "res://Scenes/bramble.tscn"
+_normalPumpkinScenePath = "res://Scenes/normal_pumpkin.tscn"
 _spriteOffSet = Vector2i(8, 8)
 
 [node name="HUD" parent="." instance=ExtResource("2_2j702")]
@@ -64,9 +65,6 @@ shape = SubResource("SegmentShape2D_43mep")
 [node name="Sprite2D" type="Sprite2D" parent="Fance"]
 texture = ExtResource("5_kgwil")
 
-[node name="NormalPumpkin" parent="." instance=ExtResource("4_b06em")]
-position = Vector2(248, 96)
-
 [node name="Player" parent="." instance=ExtResource("2_2m3xv")]
 position = Vector2(145, 145)
 _speed = 100
@@ -77,6 +75,7 @@ _cooldownValue = 0.5
 position = Vector2(319.62, 157.294)
 
 [node name="GrowthCooldown" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="Bramble" parent="." instance=ExtResource("8_jn5kv")]
