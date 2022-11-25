@@ -91,6 +91,9 @@ public partial class Player : CharacterBody2D
 		
 		GD.Print("HP: " + hp);
 		hp = new_value;
+		if(hp<=0){
+			QueueFree();
+		}
 		bus.EmitSignal(nameof(bus.PlayerHpChanged), hp);
 	}
 	

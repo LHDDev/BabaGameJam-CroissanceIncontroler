@@ -22,9 +22,10 @@ resource_local_to_scene = true
 atlas = SubResource("CompressedTexture2D_o3usl")
 region = Rect2(15, 0, 15, 15)
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("_sprite", "heartsContainer")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("_sprite", "_scoreLabel", "heartsContainer")]
 script = ExtResource("1_1a1bb")
 _sprite = NodePath("MarginContainer/HBoxContainer/WeaponBackground/Sprite2D")
+_scoreLabel = NodePath("ScoreLabel")
 heartsContainer = NodePath("MarginContainer/HBoxContainer/Hearts")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -87,3 +88,11 @@ offset_right = 53.0
 offset_bottom = 262.0
 texture = SubResource("AtlasTexture_fq1aw")
 stretch_mode = 2
+
+[node name="ScoreLabel" type="RichTextLabel" parent="."]
+offset_left = 401.0
+offset_right = 480.0
+offset_bottom = 25.0
+bbcode_enabled = true
+text = "[right]1100[/right]"
+fit_content_height = true

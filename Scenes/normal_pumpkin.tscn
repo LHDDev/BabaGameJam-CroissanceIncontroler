@@ -39,13 +39,14 @@ animations = [{
 [node name="NormalPumpkin" type="StaticBody2D" node_paths=PackedStringArray("_pumpkinSprite") groups=["pumpkin_group"]]
 script = ExtResource("1_ma5wv")
 _pumpkinSprite = NodePath("Sprite2D")
+point = 100
 
 [node name="PumpkinCore" type="Node" parent="." node_paths=PackedStringArray("_cooldownDropSeedTimer")]
 script = ExtResource("1_w8w7k")
 _cooldownDropSeedTimer = NodePath("../CooldownSeed")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["pumpkin_group"]]
-position = Vector2(0, -2)
+position = Vector2(-8, -2)
 shape = SubResource("RectangleShape2D_n7o8f")
 
 [node name="CooldownSeed" type="Timer" parent="."]
@@ -56,3 +57,4 @@ position = Vector2(0, -6)
 frames = SubResource("SpriteFrames_lsej0")
 animation = &"Idle"
 playing = true
+offset = Vector2(-8, 0)

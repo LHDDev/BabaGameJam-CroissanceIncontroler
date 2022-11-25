@@ -423,6 +423,7 @@ libraries = {
 [node name="HurtBox2" type="Area2D" parent="." node_paths=PackedStringArray("_player") groups=["hurtbox_player"]]
 position = Vector2(0, 4)
 script = ExtResource("5_47s1v")
+pushBackForce = 250
 _player = NodePath("..")
 
 [node name="HurtBox" type="CollisionShape2D" parent="HurtBox2" groups=["hurtbox_player"]]

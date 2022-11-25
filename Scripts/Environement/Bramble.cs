@@ -13,6 +13,7 @@ public partial class Bramble : Node2D
 	private Area2D _hitBox;
 
 	public List<Vector2> Neighbors = new List<Vector2>();
+	public Vector2 Parent ;
 	private Random rng = new Random();
 	private MainScene mainScene;
 	[Export]
@@ -53,6 +54,7 @@ public partial class Bramble : Node2D
 
 		newBrambel.Neighbors.Add(-growthDirection);
 		newBrambel.CheckForNeighbours();
+		newBrambel.Parent = -growthDirection;
 		this.Neighbors.Add(growthDirection);
 
 		if(Neighbors.Count >= 2){
@@ -103,5 +105,6 @@ public partial class Bramble : Node2D
 			CanGrowth = false;
 		}
 	}
+
 
 }

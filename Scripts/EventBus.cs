@@ -11,4 +11,7 @@ public partial class EventBus : Node
 	
 	[Signal]
 	public delegate void PlayerHpChangedEventHandler(int hp);
+
+	[Signal]
+	public delegate void ScoreChangedEventHandler(int score);
 }

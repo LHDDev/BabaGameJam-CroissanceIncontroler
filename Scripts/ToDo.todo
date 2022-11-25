@@ -2,13 +2,13 @@ Gameplay:
     ☐ Mouvement joueur
     Attaques joueur:
         ✔ Sécateur ( Shear ) @done (22/10/2022, 13:12:04)
-        ☐ Pelle ( Shovel )
-        ☐ Faux ( Scythe )
-        ☐ Liquide ( Spray )
+        ✔ Pelle ( Shovel ) @done (25/11/2022, 20:45:19)
+        ✔ Faux ( Scythe ) @done (25/11/2022, 20:45:19)
+        ✔ Liquide ( Spray ) @done (25/11/2022, 20:45:20)
     ☐ Si 0 coeur => Mort
 
     Citrouilles:
-        ☐ Normales
+        ✔ Normales @done (25/11/2022, 20:45:24)
             Posée sur une tile
             Font pousser des ronces autours d'elles
         ☐ Explosive
@@ -19,16 +19,16 @@ Gameplay:
             Quand le joueur arrive dans la zone de détection, le poursuivre
             Dépose des graines à intervales réguliées si en Mouvement
     Ronces:
-        ☐ A intervalles réguliés, poussent sur au contact d'une ronce reliée à une citrouille
-        ☐ Réseau déconnecté des citrouilles => il disparaît d'un coup
+        ✔ A intervalles réguliés, poussent sur au contact d'une ronce reliée à une citrouille @done (25/11/2022, 20:45:33)
+        ✔ Réseau déconnecté des citrouilles => il disparaît d'un coup @done (25/11/2022, 21:40:25)
     Collectables:
         ☐ Coeur
             Redonne 1 coeur
-        ☐ Armes
+        ✔ Armes @done (25/11/2022, 21:40:26)
             Dévérouille l'arme correspondante
 
     Score:
-        ☐ Temps de survie
+        ✔ Temps de survie @done (25/11/2022, 21:52:24)
         ☐ Citrouilles détruites
 
     Citrouille en dehors non accessible

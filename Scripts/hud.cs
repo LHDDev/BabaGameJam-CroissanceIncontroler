@@ -5,6 +5,8 @@ public partial class hud : CanvasLayer
 {
 	[Export]
 	private Sprite2D _sprite;
+	[Export]
+	private RichTextLabel _scoreLabel;
 	
 	[Export]
 	private HBoxContainer heartsContainer;
@@ -14,6 +16,7 @@ public partial class hud : CanvasLayer
 		EventBus bus = GetTree().Root.GetNode<EventBus>("EventBus");
 		bus.WeaponEquiped += onWeaponEquiped;
 		bus.PlayerHpChanged += onPlayerHpChanged;
+		bus.ScoreChanged += OnScoreChanged;
 	}
 
 	public void onWeaponEquiped(int weaponType){
@@ -32,6 +35,10 @@ public partial class hud : CanvasLayer
 			GD.Print("TextureRect name " + textureRect.Name + ", i : " + i + " textOffset " + textOffset);
 			texture.Region = new Rect2(textOffset, new Vector2(15.0f, 15.0f));
 		}
+	}
+
+	public void OnScoreChanged(int score){
+		_scoreLabel.Text = $"[right]{score}[/right]";
 	}
 	
 }

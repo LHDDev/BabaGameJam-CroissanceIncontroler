@@ -5,6 +5,8 @@ public partial class normal_pumpkin : StaticBody2D
 {
 	[Export]
 	private AnimatedSprite2D _pumpkinSprite;
+	[Export]
+	private int point;
 
 	MainScene mainScene;
 	// Called when the node enters the scene tree for the first time.
@@ -15,6 +17,7 @@ public partial class normal_pumpkin : StaticBody2D
 		foreach(Vector2 dir in brambles){
 			mainScene.PlaceTiles(GlobalPosition + dir*16,true);
 		}
+
 		
 	}
 
@@ -24,7 +27,17 @@ public partial class normal_pumpkin : StaticBody2D
 	}
 
 	public void Destroyed(){
+		_pumpkinSprite.AnimationFinished += UnloadPumpkin;
+		mainScene.PumpkinScore += point;
 		_pumpkinSprite.Animation = "Death";
+	}
+
+	public void UnloadPumpkin(){
+		mainScene.DisposeFrom(GlobalPosition, Vector2.Down);
+		mainScene.DisposeFrom(GlobalPosition, Vector2.Right);
+		mainScene.DisposeFrom(GlobalPosition, Vector2.Up);
+		mainScene.DisposeFrom(GlobalPosition, Vector2.Left);
+		QueueFree();
 	}
 
 }
